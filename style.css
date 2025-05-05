@@ -1,0 +1,152 @@
+@import url("/theme.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: all .3s linear;
+    border: none;
+    transition: none;
+}
+
+:root {
+    min-height: 100vh;
+    background-color: #000;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    width: 100%;
+    min-width: fit-content;
+}
+
+a[href] {
+    color: #0af;
+}
+
+.section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+/* scroll watcher */
+
+#scroll-watcher {
+    height: .5rem;
+    width: 0%;
+    background-color: #f33;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    animation-name: scroll-watcher;
+    animation-timing-function: linear;
+    animation-timeline: scroll();
+    animation-delay: 2s;
+}
+
+@keyframes scroll-watcher {
+    0% {
+        width: 0%
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* styles for the main heading */
+
+#a {
+    min-height: 80vh;
+    position: sticky;
+    top: 0;
+    z-index: -1;
+    animation-name: scroll-shrink;
+    animation-timing-function: linear;
+    animation-timeline: scroll();
+    animation-delay: 2s;
+}
+
+@keyframes scroll-shrink {
+    to {
+        scale: 0.2;
+    }
+}
+
+#header {
+    border-radius: 1rem;
+    margin: 2rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+#title-logo {
+    height: 6rem;
+}
+
+#title {
+    font-size: 4rem;
+    color: var(--primary-text-color);
+}
+
+#subtitle {
+    font-size: 2rem;
+}
+
+/* styles for the countdown */
+
+#countdown {
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #0008;
+}
+
+#timer {
+    margin: 1rem;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    background-color: var(--hallucinate-color);
+    border-radius: 1rem;
+    gap: 1rem;
+}
+
+.time {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.time>h2 {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 4rem;
+    justify-content: center;
+    border-radius: 1rem;
+    background-color: #0008;
+}
+
+/* styles for the video part and overlays*/
+
+#atob {
+    background-image: linear-gradient(#0000, #111);
+    min-height: 100vh;
+}
+
+#b {
+    min-height: 100vh;
+    background-color: #111;
+}
