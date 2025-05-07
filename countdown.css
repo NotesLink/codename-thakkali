@@ -1,0 +1,41 @@
+#countdown {
+    border-radius: 1rem;
+    background-color: #0008;
+    border: 2rem solid var(--hallucinate-color);
+}
+
+#timer {
+    grid-area: timer;
+    max-width: 100%;
+    padding: 2vmin;
+    width: fit-content;
+    border-radius: 1vmin;
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    background-color: var(--hallucinate-color);
+    gap: 2vmin;
+}
+
+.time {
+    display: flex;
+    gap: 1vmin;
+    justify-content: center;
+    align-items: center;
+}
+
+.time>h2 {
+    font-family: "DSEG";
+    padding: 1vmin;
+    font-size: 8vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1vmin;
+    background-color: #000c;
+}
+
+#timer>p {
+    font-size: 2vmin;
+    font-weight: bold;
+}

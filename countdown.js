@@ -31,4 +31,4 @@ let update = setInterval(function () {
     for (let i = ss.length; i >= 1; i--) {
         document.getElementById(`s${i}`).innerText = ss[i - 1];
     }
-}, 1000);
+}, 100);

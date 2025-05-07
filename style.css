@@ -1,18 +1,25 @@
 @import url("theme.css");
+@import url("countdown.css");
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: sans-serif;
     transition: all .3s linear;
     border: none;
     transition: none;
+    scrollbar-width: 0;
 }
 
 :root {
     min-height: 100vh;
     background-color: #000;
+}
+
+@font-face {
+    font-family: 'DSEG';
+    src: url("fonts-DSEG_v046/DSEG7Modern-BoldItalic.ttf");
 }
 
 *::-webkit-scrollbar {
@@ -24,41 +31,29 @@ body {
     min-width: fit-content;
 }
 
-a[href] {
-    color: #0af;
-}
-
-.section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-}
-
-/* scroll watcher */
-
-#scroll-watcher {
-    height: .5rem;
-    width: 0%;
-    background-color: #f33;
+#bg {
     position: fixed;
-    top: 0;
-    z-index: 100;
-    animation-name: scroll-watcher;
-    animation-timing-function: linear;
+    z-index: -2;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    animation-name: scroll-zoom;
     animation-timeline: scroll();
-    animation-delay: 2s;
 }
 
-@keyframes scroll-watcher {
+@keyframes scroll-zoom {
     0% {
-        width: 0%
+        opacity: 0.5;
+
+    }
+
+    50% {
+        opacity: 1;
     }
 
     100% {
-        width: 100%;
+        opacity: 0;
     }
 }
 
@@ -66,87 +61,122 @@ a[href] {
 
 #a {
     min-height: 80vh;
+    gap: 2rem;
     position: sticky;
     top: 0;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas:
+        "title"
+        "txt1"
+        "timer";
+    padding: 1rem;
     z-index: -1;
-    animation-name: scroll-shrink;
-    animation-timing-function: linear;
-    animation-timeline: scroll();
-    animation-delay: 2s;
 }
 
-@keyframes scroll-shrink {
-    to {
-        scale: 0.2;
+#a>* {
+    animation-name: scroll-effect;
+    animation-timeline: scroll();
+}
+
+@keyframes scroll-effect {
+    0% {
+        scale: 1;
+        opacity: 1;
+    }
+
+    50% {
+        scale: 1.2;
+        opacity: 0.5;
+    }
+
+    100% {
+        scale: 0.6;
+        opacity: 0;
     }
 }
 
 #header {
-    border-radius: 1rem;
-    margin: 2rem;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+        "logo head"
+        "logo sub";
+    grid-area: title;
+    column-gap: 1rem;
 }
 
 #title-logo {
+    align-content: right;
     height: 6rem;
+    grid-area: logo;
 }
 
 #title {
+    width: 100%;
+    grid-area: head;
     font-size: 4rem;
+    text-align: left;
     color: var(--primary-text-color);
 }
 
 #subtitle {
+    width: 100%;
+    text-align: left;
+    grid-area: sub;
     font-size: 2rem;
 }
 
-/* styles for the countdown */
-
-#countdown {
-    padding: 1rem;
-    border-radius: 1rem;
-    background-color: #0008;
+#b {
+    display: grid;
+    grid-template-columns: auto;
+    justify-items: center;
+    height: fit-content;
+    width: 100%;
+    row-gap: 5rem;
+    background-image: linear-gradient(#0000, #000);
 }
 
-#timer {
-    margin: 1rem;
-    padding: 1rem;
+#b>video {
+    border-color: var(--hallucinate-color);
+    border-width: 2vmin 2vmin 0 2vmin;
+    border-radius: 1vmin 1vmin 0 0;
+    border-style: solid;
+    max-height: 80vmin;
+    max-width: 100%;
+}
+
+#c {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: auto;
+    justify-items: center;
+    padding: 5vmin;
+    background-color: #000;
+    border-top: 1px solid var(--hallucinate-color);
+}
+
+#c>a {
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-family: DSEG;
+    padding: 1rem;
+    border: 1px solid var(--hallucinate-color);
     background-color: var(--hallucinate-color);
     border-radius: 1rem;
-    gap: 1rem;
+    transition-property: all;
+    transition-duration: .5s;
 }
 
-.time {
-    display: flex;
-    gap: 4px;
-    justify-content: center;
-    align-items: center;
-}
-
-.time>h2 {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    font-size: 4rem;
-    justify-content: center;
-    border-radius: 1rem;
-    background-color: #0008;
-}
-
-/* styles for the video part and overlays*/
-
-#atob {
-    background-image: linear-gradient(#0000, #111);
-    min-height: 100vh;
-}
-
-#b {
-    min-height: 100vh;
-    background-color: #111;
+#c>a:hover {
+    scale: 1.2;
+    background-color: #0000;
+    box-shadow: inset .5rem .5rem var(--hallucinate-color), .5rem .5rem var(--hallucinate-color);
 }
